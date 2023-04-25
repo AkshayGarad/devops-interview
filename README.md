@@ -87,3 +87,20 @@ Dangling images can accumulate over time and take up valuable disk space. They c
 To identify and remove dangling images, the "docker image" command can be used with the "--filter" option and the "dangling=true" filter. For example, the command "docker image prune --filter dangling=true" will remove all dangling images.
 
 It is generally a good practice to periodically clean up dangling images and other unused Docker resources to free up disk space and ensure that Docker images are well-organized and easy to manage.
+
+## 6. How to reduce docker image from 200mb to 100mb
+Reducing the size of a Docker image can help improve the efficiency and speed of deployments. Here are some steps that can be taken to reduce the size of a Docker image from 200mb to 100mb:
+
+1. Optimize the Dockerfile: The Dockerfile can be optimized by reducing the number of layers, using multi-stage builds, and minimizing the number of dependencies. Each layer adds to the size of the image, so reducing the number of layers can help reduce the overall size.
+
+2. Remove unnecessary files: Remove any unnecessary files and folders from the image that are not required for the application to run. This can include log files, temporary files, and other files that are not required at runtime.
+
+3. Use Alpine Linux: Consider using a smaller base image such as Alpine Linux instead of the standard Linux distribution. Alpine Linux is a lightweight distribution that can significantly reduce the size of the Docker image.
+
+4. Compress files: Use compression tools like gzip or tar to compress large files before adding them to the Docker image. This can help reduce the size of the image without sacrificing functionality.
+
+5. Use smaller libraries: Use smaller libraries that are optimized for size instead of larger ones. This can help reduce the overall size of the image.
+
+6. Clean up the build environment: Clean up the build environment after the build process is complete. This includes removing any build tools or other temporary files that were used during the build process.
+
+By following these steps, it is possible to significantly reduce the size of a Docker image from 200mb to 100mb. This can help improve the efficiency of deployments and reduce the overall storage requirements of the Docker images.
