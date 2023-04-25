@@ -59,3 +59,21 @@ To display error logs for a Java application running on an EC2 instance, you can
 5. Check Java application logs: Many Java applications also provide their own logging framework, such as Log4j or Logback. Check the application's documentation to see how to configure and view application logs.
 
 By using these tools and techniques, you can quickly and efficiently view error logs for Java applications running on EC2 instances.
+
+## 4. You are tasked with creating a CI/CD pipeline for a new web application that will run on AWS. What AWS services would you use, and how would you set up the pipeline?
+Creating a CI/CD pipeline for a web application on AWS involves a number of steps and requires the use of several AWS services. Here is a general outline of how to set up a CI/CD pipeline for a web application on AWS:
+
+1. Code Repository: Start by creating a code repository for the application code. AWS offers a managed code repository service called AWS CodeCommit, which can be used to store and manage the codebase.
+
+2. Build Environment: Next, set up a build environment using a service such as AWS CodeBuild. CodeBuild is a fully managed build service that can compile, test, and package code, and is scalable to handle large build workloads.
+
+3. Artifact Storage: Store the built artifacts in an artifact repository, such as AWS CodeArtifact or AWS S3. This is important as it allows for the artifacts to be easily retrieved during the deployment phase.
+
+4. Deployment: Use a deployment service such as AWS CodeDeploy to automate the deployment of the application to the target environment. CodeDeploy can be used to deploy the application to a variety of target environments, such as EC2 instances, AWS Lambda functions, or even on-premise servers.
+
+5. Testing: Set up automated testing using a service like AWS CodePipeline or AWS CodeBuild. Automated testing can help ensure that code changes do not introduce new bugs or regressions.
+
+6. Monitoring: Use a monitoring service such as AWS CloudWatch to monitor the performance of the application in production. CloudWatch can be used to collect and analyze metrics, set up alarms, and create dashboards.
+
+Overall, setting up a CI/CD pipeline for a web application on AWS requires careful planning and coordination between multiple services. However, by following best practices and leveraging the features and capabilities of AWS services, it is possible to create a reliable and efficient pipeline that can help speed up development and deployment cycles.
+
