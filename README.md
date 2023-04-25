@@ -121,3 +121,22 @@ The steps to use git bisect are as follows:
 5. End the bisect: End the bisect with the command `git bisect reset`.
 
 Once the bisect has been completed, the identified commit can be examined to determine what caused the issue. The git bisect command can be a powerful tool in debugging complex codebases, allowing developers to quickly identify the root cause of issues and apply fixes efficiently.
+
+## 8. Git merge and fast forwarding merge
+
+
+Git merge is a command in Git that combines the changes from one branch into another branch. This is useful when you have made changes in a feature branch and want to incorporate those changes into your main branch.
+
+A fast-forward merge is a type of merge in Git that occurs when the branch being merged has no divergent commits compared to the target branch. In other words, there are no commits on the target branch that are not already on the branch being merged.
+
+In a fast-forward merge, Git simply moves the pointer of the target branch to the same commit as the branch being merged. This results in a linear history with a single branch head.
+
+To perform a fast-forward merge, you can use the following command:
+
+```
+git merge --ff-only <branch-name>
+```
+
+This command will perform the merge only if it can be done as a fast-forward. If a fast-forward merge is not possible, Git will abort the merge and prompt you to resolve any conflicts manually.
+
+Fast-forward merges are often used for merging hotfixes or small changes into a stable branch. However, it's important to note that they should not be used in situations where the branch being merged has divergent changes that need to be merged in a specific way. In such cases, a regular merge is necessary.
