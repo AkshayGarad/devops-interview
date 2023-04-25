@@ -104,3 +104,20 @@ Reducing the size of a Docker image can help improve the efficiency and speed of
 6. Clean up the build environment: Clean up the build environment after the build process is complete. This includes removing any build tools or other temporary files that were used during the build process.
 
 By following these steps, it is possible to significantly reduce the size of a Docker image from 200mb to 100mb. This can help improve the efficiency of deployments and reduce the overall storage requirements of the Docker images.
+
+## 7. Git bisect ?
+Git bisect is a command in Git that helps identify the commit that introduced a bug or issue in the codebase. It does this by performing a binary search through the commit history, checking out commits and allowing the user to test whether the issue is present or not.
+
+The steps to use git bisect are as follows:
+
+1. Start the bisect: Start the bisect with the command `git bisect start`. This sets the HEAD to the last commit and marks it as "good".
+
+2. Mark the bad commit: Identify a commit where the issue is present and mark it as "bad" with the command `git bisect bad <commit>`.
+
+3. Test the current commit: Check out the current commit with the command `git bisect good|bad` depending on whether the issue is present or not.
+
+4. Repeat the testing: Git will now move to another commit, bisecting the range between the first "good" commit and the first "bad" commit. Repeat the testing process until you have identified the commit that introduced the issue.
+
+5. End the bisect: End the bisect with the command `git bisect reset`.
+
+Once the bisect has been completed, the identified commit can be examined to determine what caused the issue. The git bisect command can be a powerful tool in debugging complex codebases, allowing developers to quickly identify the root cause of issues and apply fixes efficiently.
