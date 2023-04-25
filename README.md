@@ -77,3 +77,13 @@ Creating a CI/CD pipeline for a web application on AWS involves a number of step
 
 Overall, setting up a CI/CD pipeline for a web application on AWS requires careful planning and coordination between multiple services. However, by following best practices and leveraging the features and capabilities of AWS services, it is possible to create a reliable and efficient pipeline that can help speed up development and deployment cycles.
 
+## 5. Docker image dangling means??
+In Docker, a dangling image is an image that has no associated tag and is not used by any container. It is also sometimes referred to as an "unreferenced image".
+
+When an image is built or pulled, it is given a unique ID or hash, and it may also be tagged with a specific name and version. If an image is built or pulled without a tag, or if the tag is later removed, the image becomes a dangling image. 
+
+Dangling images can accumulate over time and take up valuable disk space. They can also make it difficult to identify and manage Docker images, as they may not be immediately visible in image listings.
+
+To identify and remove dangling images, the "docker image" command can be used with the "--filter" option and the "dangling=true" filter. For example, the command "docker image prune --filter dangling=true" will remove all dangling images.
+
+It is generally a good practice to periodically clean up dangling images and other unused Docker resources to free up disk space and ensure that Docker images are well-organized and easy to manage.
