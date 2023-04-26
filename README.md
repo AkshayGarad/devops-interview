@@ -211,3 +211,12 @@ The major version indicates significant changes that are not backwards compatibl
 Semantic Versioning also allows for pre-release versions to be marked with a hyphen and a series of additional labels such as "alpha", "beta", or "rc" (release candidate) following the version number. This allows developers to indicate that a version is not yet stable or feature-complete.
 
 Semantic Versioning is important because it helps developers and users understand the level of change that comes with a new version of software. By following a consistent system, it allows users to know whether they need to update their software, and if so, what changes to expect.
+
+## 14. do declarative pipeline allows us to use scm in jenkins and how? do i need to add scm plugin?
+In order to use SCM in Jenkins, you don't necessarily need to add any SCM plugins as Jenkins comes with support for several SCM systems out of the box. However, depending on the SCM system you're using, you may need to install additional plugins to enable certain features or improve integration with Jenkins.
+
+For example, if you're using Git as your SCM system and you want to use the `git` step in your pipeline, you don't need to install any additional plugins as the Git plugin is included in the Jenkins installation by default. However, if you want to use additional Git features, such as submodules or shallow clones, you may need to install the Git client plugin or the Pipeline SCM Step plugin.
+
+Similarly, if you're using other SCM systems like Subversion, Mercurial, or Perforce, you may need to install their respective plugins to enable SCM integration with Jenkins.
+
+So, while you don't necessarily need to install any SCM plugins to use SCM in Jenkins, installing the appropriate plugins can help you take advantage of additional features and improve integration with your SCM system.
