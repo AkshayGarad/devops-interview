@@ -202,3 +202,12 @@ To automate tasks such as deployment, testing, and monitoring of a Maven Spring 
 5. Logging: Use AWS CloudWatch Logs to aggregate and analyze logs from your application. You can also use AWS Kinesis Data Firehose to stream logs to other services like Amazon S3 or Elasticsearch.
 
 By using these AWS services, you can automate tasks such as deployment, testing, and monitoring of your Maven Spring Boot application running on an EC2 instance, and ensure that your application is highly available and performing optimally.
+
+## 13. Semantic Versioning 
+Semantic Versioning, also known as SemVer, is a system used for versioning software releases. It is based on a three-part version number, consisting of a major version, a minor version, and a patch version, separated by dots. 
+
+The major version indicates significant changes that are not backwards compatible with previous versions. The minor version indicates smaller changes that are backwards compatible with previous versions. The patch version indicates bug fixes or small changes that are backwards compatible with previous versions.
+
+Semantic Versioning also allows for pre-release versions to be marked with a hyphen and a series of additional labels such as "alpha", "beta", or "rc" (release candidate) following the version number. This allows developers to indicate that a version is not yet stable or feature-complete.
+
+Semantic Versioning is important because it helps developers and users understand the level of change that comes with a new version of software. By following a consistent system, it allows users to know whether they need to update their software, and if so, what changes to expect.
