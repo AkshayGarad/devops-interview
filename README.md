@@ -257,3 +257,15 @@ To address these challenges, we followed a careful plan of action. First, we com
 
 Overall, the upgrade process was a success, and our team was able to benefit from the higher configuration Jenkins server, which improved our build times and helped us deliver software more efficiently.
 
+## 17. Can you describe a time when you configured dynamic Jenkins agents/nodes to handle the fluctuating demand for computing resources in a pipeline? How did you determine the appropriate configuration settings, and what challenges did you encounter during the configuration process?
+In a previous role as an AWS DevOps Engineer, I worked on a project where the demand for computing resources in the Jenkins pipeline fluctuated significantly. During peak hours, the pipeline required additional agents to handle the increased workload, while during off-peak hours, fewer agents were needed.
+
+To handle the fluctuating demand, I configured Jenkins to use the Amazon EC2 Plugin to create dynamic agents on AWS. I determined the appropriate configuration settings by analyzing the historical usage patterns and forecasting the expected workload for each hour of the day.
+
+Based on this analysis, I configured the Amazon EC2 Plugin to create additional agents during peak hours and reduce the number of agents during off-peak hours. I also specified the instance types and pricing strategies to optimize the cost of running the agents.
+
+One challenge I encountered during the configuration process was ensuring that the agents were created quickly enough to handle the incoming workload. To address this, I configured the Amazon EC2 Plugin to use AWS Auto Scaling groups, which allowed Jenkins to automatically scale the number of agents up or down based on the workload.
+
+Another challenge was managing the configuration of the agents, such as installing the necessary software and configuring the required environment variables. To address this, I used Ansible to automate the configuration of the agents, which ensured that the agents were configured consistently and quickly.
+
+Overall, the use of dynamic Jenkins agents/nodes allowed us to handle the fluctuating demand for computing resources in a cost-effective and scalable manner. The configuration process required careful analysis and planning, as well as the use of tools such as the Amazon EC2 Plugin and Ansible to automate the management of the agents.
