@@ -302,3 +302,41 @@ To simplify this process and ensure that your build environment is consistent, y
 Next, you would create a Jenkins pipeline that uses the Docker agent to run your build. In the pipeline, you would specify the Docker image that contains your build environment and the commands to execute your build and tests. You could also use Docker to deploy your application to a staging environment, by creating a new container from a Docker image containing your application and its dependencies.
 
 By using Docker agents in Jenkins, you can ensure that your build environment is consistent and reproducible, regardless of the host environment. This helps to reduce build failures and makes it easier to maintain and scale your infrastructure. Additionally, by integrating Docker with other DevOps tools, such as Kubernetes or AWS, you can create a complete end-to-end DevOps workflow that simplifies your application lifecycle management.
+
+Sure, here's an example of a Jenkins pipeline that uses a Docker agent to build a Maven project and create a Docker image:
+
+```
+pipeline {
+    agent {
+        docker {
+            image 'maven:3.8.1-jdk-11'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Dockerize') {
+            steps {
+                script {
+                    docker.build("my-app:${env.BUILD_NUMBER}")
+                    docker.withRegistry('https://my-docker-registry.com', 'docker-registry-credentials') {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+In this example, the Jenkins pipeline uses the `maven:3.8.1-jdk-11` Docker image as the build agent. The `-v $HOME/.m2:/root/.m2` argument mounts the local Maven repository into the Docker container, so that dependencies can be cached and reused between builds.
+
+The pipeline has two stages. The first stage, `Build`, runs the Maven `clean` and `package` goals to build the project.
+
+The second stage, `Dockerize`, creates a Docker image for the project using the Dockerfile in the project directory. The `docker.build` command creates a new Docker image with a tag based on the Jenkins build number. The `docker.withRegistry` block pushes the Docker image to a Docker registry, using the `docker-registry-credentials` Jenkins credential for authentication.
+
+By using a Docker agent in the pipeline, the build environment is consistent and isolated from the host environment. This helps to ensure that builds are reproducible and reduces the risk of build failures due to environmental issues. Additionally, by creating a Docker image for the project, you can easily deploy the application to a container orchestration platform such as Kubernetes.
