@@ -269,3 +269,15 @@ One challenge I encountered during the configuration process was ensuring that t
 Another challenge was managing the configuration of the agents, such as installing the necessary software and configuring the required environment variables. To address this, I used Ansible to automate the configuration of the agents, which ensured that the agents were configured consistently and quickly.
 
 Overall, the use of dynamic Jenkins agents/nodes allowed us to handle the fluctuating demand for computing resources in a cost-effective and scalable manner. The configuration process required careful analysis and planning, as well as the use of tools such as the Amazon EC2 Plugin and Ansible to automate the management of the agents.
+
+I have configured dynamic Jenkins agents/nodes using Docker and Kubernetes to handle fluctuating demand for computing resources in a pipeline. One time, we had a project with varying demands for computing resources during specific periods of the day. We needed to ensure that there were enough agents available to handle the workload during these peak periods.
+
+To address this, I installed the Kubernetes plugin on our Jenkins master and created a Kubernetes cluster on our AWS infrastructure. I then created a Kubernetes deployment and service to manage our Jenkins agents, with the appropriate resources requested based on the demands of the job.
+
+To determine the appropriate configuration settings, I analyzed the patterns of resource demands during different times of the day and week. I also looked at the number of concurrent builds and the resource requirements for each build. Based on this analysis, I determined the appropriate number of agents to have available and the resources required for each agent.
+
+One challenge I encountered during the configuration process was ensuring that the agents were properly registered with the Jenkins master. To overcome this, I created a script to automate the registration process, which saved us a lot of time and effort.
+
+Another challenge was monitoring and managing the resources used by the agents to ensure that they didn't consume too many resources and impact other processes running on the same cluster. To address this, I implemented resource limits and usage monitoring, which helped us to maintain stable and reliable performance.
+
+Overall, configuring dynamic Jenkins agents/nodes using Docker and Kubernetes was an effective solution to handle fluctuating demand for computing resources in our pipeline, and it allowed us to scale our infrastructure dynamically based on our needs.
