@@ -401,3 +401,26 @@ In this configuration, NGINX is configured to cache responses from the Artifacto
 When a request comes in, NGINX will check the cache to see if it has a response for the requested image. If it does, it will serve the cached response instead of forwarding the request to Artifactory. If it doesn't, NGINX will forward the request to Artifactory and cache the response for future requests.
 
 Overall, using NGINX as a reverse proxy with caching can significantly improve the performance and scalability of your JFrog Artifactory and Kubernetes clusters by reducing the load on your backend servers and minimizing the amount of network traffic between them.
+
+## 20. Can you explain the general steps you would follow to shift your SCM from GitLab to GitHub, and what considerations you would need to keep in mind when transferring code and updating your local repositories?
+Sure, here are the general steps you would follow to shift your source code management (SCM) from GitLab to GitHub, along with some considerations to keep in mind:
+
+1. Export your GitLab repositories: Use GitLab's built-in export feature to export your repositories as a Git bundle file.
+
+2. Import your repositories into GitHub: Create a new repository in GitHub and select the "Import code" option. Then, select "Git" as the source and upload your Git bundle file.
+
+3. Update your local repositories: Update the "origin" remote URL in your local repository's configuration to point to the new GitHub repository URL.
+
+4. Verify and test: Verify that everything has been transferred correctly and test that your code can be pushed and pulled from the new repository location.
+
+When transferring code from GitLab to GitHub, there are a few things to keep in mind:
+
+1. Check for any differences in the GitLab and GitHub workflows: For example, you may need to update your CI/CD pipelines to use GitHub Actions or another CI/CD platform.
+
+2. Update integrations and webhooks: Make sure that any integrations or webhooks that are currently pointing to your GitLab repository are updated to point to the new GitHub repository.
+
+3. Keep track of issues and pull requests: If you have open issues or pull requests in GitLab, make sure that you have a plan for how to handle them during the transfer to GitHub.
+
+4. Update documentation and references: Update any documentation or references to your GitLab repository to reflect the new GitHub repository URL.
+
+Overall, shifting your SCM from GitLab to GitHub involves exporting your GitLab repositories, importing them into GitHub, updating your local repositories, and verifying that everything has been transferred correctly. Keep in mind any differences in the workflows, update integrations and webhooks, and update documentation and references as needed.
