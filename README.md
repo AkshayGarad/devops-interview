@@ -340,3 +340,64 @@ The pipeline has two stages. The first stage, `Build`, runs the Maven `clean` an
 The second stage, `Dockerize`, creates a Docker image for the project using the Dockerfile in the project directory. The `docker.build` command creates a new Docker image with a tag based on the Jenkins build number. The `docker.withRegistry` block pushes the Docker image to a Docker registry, using the `docker-registry-credentials` Jenkins credential for authentication.
 
 By using a Docker agent in the pipeline, the build environment is consistent and isolated from the host environment. This helps to ensure that builds are reproducible and reduces the risk of build failures due to environmental issues. Additionally, by creating a Docker image for the project, you can easily deploy the application to a container orchestration platform such as Kubernetes.
+
+## 19. Can you explain how you would configure NGINX as a reverse proxy for a JFrog Artifactory and Kubernetes cluster, and how you would use NGINX to cache Docker images served by Artifactory?
+To use NGINX as a reverse proxy, you can follow these steps:
+
+1. Install NGINX: You can install NGINX on your server using your distribution's package manager or by downloading and building it from source.
+
+2. Configure NGINX: Next, you need to configure NGINX as a reverse proxy. You can do this by editing the NGINX configuration file, usually located at /etc/nginx/nginx.conf. Here's an example configuration:
+
+```
+http {
+  upstream app_servers {
+    server app1.example.com;
+    server app2.example.com;
+  }
+
+  server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+      proxy_pass http://app_servers;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+  }
+}
+```
+
+In this configuration, NGINX listens on port 80 for requests to example.com. It forwards those requests to the app_servers upstream, which is a group of backend servers that NGINX will load balance requests between.
+
+The `proxy_pass` directive specifies the upstream servers that NGINX should forward requests to. The `proxy_set_header` directives are used to pass along the original request headers to the upstream servers.
+
+3. Restart NGINX: After you've configured NGINX, you need to restart it for the changes to take effect. On most Linux distributions, you can do this with the command `sudo systemctl restart nginx`.
+
+When it comes to using NGINX as a reverse proxy for JFrog Artifactory and Kubernetes, you can use NGINX to cache Docker images served by Artifactory. To do this, you can add a caching layer to NGINX's configuration file like this:
+
+```
+http {
+  proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=my_cache:10m inactive=60m;
+
+  server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+      proxy_cache my_cache;
+      proxy_pass http://artifactory:8081;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+  }
+}
+```
+
+In this configuration, NGINX is configured to cache responses from the Artifactory server using a cache path at `/var/cache/nginx`. The `proxy_cache` directive tells NGINX to use this cache for requests, and the `inactive` parameter specifies that responses should be cached for up to 60 minutes.
+
+When a request comes in, NGINX will check the cache to see if it has a response for the requested image. If it does, it will serve the cached response instead of forwarding the request to Artifactory. If it doesn't, NGINX will forward the request to Artifactory and cache the response for future requests.
+
+Overall, using NGINX as a reverse proxy with caching can significantly improve the performance and scalability of your JFrog Artifactory and Kubernetes clusters by reducing the load on your backend servers and minimizing the amount of network traffic between them.
